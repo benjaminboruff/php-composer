@@ -1,7 +1,9 @@
 FROM php
 
+ENV PATH="/code:/code/app:${PATH}"
+
+# This allows composer to be installed outside of the app dir
 WORKDIR /code
-ENV PATH="/code:${PATH}"
 
 RUN apt-get update \
     && apt-get install -y wget git zip unzip libzip-dev \
@@ -12,5 +14,8 @@ RUN apt-get update \
     && docker-php-ext-install zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# This is where the app's source code volume is mounted 
+WORKDIR /code/app
 
 EXPOSE 8000
