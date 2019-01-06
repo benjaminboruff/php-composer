@@ -1,19 +1,22 @@
 FROM php
 
-ENV PATH="/code:/code/app:${PATH}"
-
-# This allows composer to be installed outside of the app dir
-WORKDIR /code
+ENV PATH="/code:/code/app:${PATH}" \ 
+    PHP_OPCACHE_VALIDATE_TIMESTAMPS="0" \
+    PHP_OPCACHE_MAX_ACCELERATED_FILES="10000" \
+    PHP_OPCACHE_MEMORY_CONSUMPTION="192" \
+    PHP_OPCACHE_MAX_WASTED_PERCENTAGE="10"
 
 RUN apt-get update \
     && apt-get install -y wget git zip unzip libzip-dev \
     && wget https://raw.githubusercontent.com/composer/getcomposer.org/d3e09029468023aa4e9dcd165e9b6f43df0a9999/web/installer -O - -q | php -- --quiet \
-    && mv composer.phar composer \
+    && mv /composer.phar /usr/local/bin/composer \
     && composer self-update \
     && docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-install zip \
+    && docker-php-ext-install zip opcache \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # This is where the app's source code volume is mounted 
 WORKDIR /code/app
