@@ -24,3 +24,5 @@ Then run
 This assumes your host is linux. If you are using OSX or Win, then the `UID` and `GID` env vars may be different, or not apply at all.
 
 You'll have to roll your own `docker-compose.yml` based on your OS.
+
+Please see this [sample Slim app](https://github.com/benjaminboruff/slimsample) for using this image via a `docker-compose.yml` file.
