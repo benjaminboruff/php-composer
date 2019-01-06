@@ -1,5 +1,21 @@
 ## Generic `php:latest` and `composer` image
 
+This image contains a generic opcache.ini file for a production environment. These values can be changed in a dev project's
+`docker-compose.yml` file.
+
+```
+[opcache]
+
+opcache.enable=1
+opcache.revalidate_freq=0
+opcache.validate_timestamps=${PHP_OPCACHE_VALIDATE_TIMESTAMPS}
+opcache.max_accelerated_files=${PHP_OPCACHE_MAX_ACCELERATED_FILES}
+opcache.memory_consumption=${PHP_OPCACHE_MEMORY_CONSUMPTION}
+opcache.max_wasted_percentage=${PHP_OPCACHE_MAX_WASTED_PERCENTAGE}
+opcache.interned_strings_buffer=16
+opcache.fast_shutdown=1
+```
+
 ### Sample `docker-compose.yml` for a [slim](http://www.slimframework.com/) framework app.
 
 ```
@@ -10,6 +26,9 @@ services:
         image: bhboruff/php-composer
         environment:
             user: "${UID}:${GID}"
+            # NB: the default for PHP_OPCACHE_VALIDATE_TIMESTAMPS is 0, which may be what you
+            # want for production, but for dev you certainly want file changes to be detected, thus set to 1
+            PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
         ports:
             - 8000:8000
         volumes:

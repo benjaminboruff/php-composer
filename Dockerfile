@@ -16,6 +16,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# The defaults in this opcache.ini are for a generic prod setup
+# and can be changed in a dev project's docker-compose file to
+# better fit a dev enviroment
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # This is where the app's source code volume is mounted 
