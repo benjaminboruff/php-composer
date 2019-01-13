@@ -38,9 +38,9 @@ services:
 
 Then run 
 
-```env UID=${UID} GID=${GID} docker-compose up```
+```env UID=$(id -u) GID=$(id -g) docker-compose up```
 
-This assumes your host is linux. If you are using OSX or Win, then the `UID` and `GID` env vars may be different, or not apply at all.
+This assumes your host is linux. If you are using OSX or Win, then the `id -u` and `id -g` commands will be different, or not apply at all.
 
 You'll have to roll your own `docker-compose.yml` based on your OS.
 
