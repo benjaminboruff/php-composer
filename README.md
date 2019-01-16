@@ -32,7 +32,7 @@ services:
         ports:
             - 8000:8000
         volumes:
-            - .:/code/app
+            - .:/code
         command: php -S 0.0.0.0:8000 -t public
 ```
 
