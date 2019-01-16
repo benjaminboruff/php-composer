@@ -12,7 +12,7 @@ RUN apt-get update \
     && mv /composer.phar /usr/local/bin/composer \
     && composer self-update \
     && docker-php-ext-configure zip --with-libzip \
-    && docker-php-ext-install zip opcache \
+    && docker-php-ext-install zip opcache pgsql bcmath \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
