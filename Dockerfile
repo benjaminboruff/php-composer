@@ -22,6 +22,6 @@ RUN apt-get update \
 COPY opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # This is where the app's source code volume is mounted 
-WORKDIR /code/app
+WORKDIR /code
 
 EXPOSE 8000
