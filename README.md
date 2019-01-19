@@ -23,7 +23,7 @@ version: '3'
 
 services:
     slimapp:
-        image: bhboruff/php-composer
+        image: localgyros/php-composer
         environment:
             user: "${UID}:${GID}"
             # NB: the default for PHP_OPCACHE_VALIDATE_TIMESTAMPS is 0, which may be what you
