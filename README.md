@@ -1,4 +1,4 @@
-## Generic `php:latest` and `composer` image
+## Generic `php:7.3` and `composer` image
 
 This image contains a generic opcache.ini file for a production environment. These values can be changed in a dev project's
 `docker-compose.yml` file.
