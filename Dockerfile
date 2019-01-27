@@ -1,6 +1,6 @@
 FROM php:7.3
 
-ENV PATH="/code:${PATH}" \
+ENV PATH="/code:/code/.composer/vendor/bin:${PATH}" \
     PHP_OPCACHE_VALIDATE_TIMESTAMPS="0" \
     PHP_OPCACHE_MAX_ACCELERATED_FILES="10000" \
     PHP_OPCACHE_MEMORY_CONSUMPTION="192" \
